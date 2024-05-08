@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+  <div class = container>
+    <div class = routeSelectionContainer>
+      <label for="routeDatalist">Select a route:</label>
+      <input id = routeInput class = routeInput list = routeDatalist onchange = 'routeSelected()'>
+      <datalist class = routeDatalist id = routeDatalist></datalist>
+    </div>
+  </div>
+
+</body>
+<style>
+    .routeInput {
+
+    }
+  .container {
+      height: 500px;
+      width: 700px;
+      position: absolute;
+  }
+</style>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+  let routes;
+  load();
+  function load() {
+    $.ajax({
+        url: 'route_fetch.php',
+        type: 'POST',
+      success: function(data) {
+          routes = JSON.parse(data);
+
+
+          for(let i = 1; i < routes.length; i++) {
+              const list = document.getElementById('routeDatalist');
+              const option = document.createElement('option');
+              option.setAttribute('id', 'routeDatalistOption');
+              option.innerHTML = routes[i]['route_desc'];
+              option.innerText = routes[i]['route_short_name'];
+              list.append(option);
+          }
+      }
+    })
+  }
+  function routeSelected() {
+      const routeInp = document.getElementById('routeInput');
+      console.log(routeInp.value);
+      loadRoute(routeInp.value);
+  }
+  function loadRoute(route) {
+      $.ajax({
+          url: 'load_route.php',
+          type: 'POST',
+          data: {
+              route: route,
+          },
+          success: function(data) {
+            console.log(data);
+            console.log((JSON.parse(data)));
+          }
+      })
+  }
+</script>
+</html>

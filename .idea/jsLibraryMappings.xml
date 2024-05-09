@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{http_ajax.googleapis.com_ajax_libs_jquery_3.7.1_jquery}" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

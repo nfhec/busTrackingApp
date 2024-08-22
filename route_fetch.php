@@ -1,4 +1,5 @@
 <?php
+
 $conn = mysqli_connect('localhost', 'root', 'root', 'gtfs');
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
@@ -13,4 +14,8 @@ if ($result->num_rows > 0) {
 
     }
 }
+
 echo(json_encode($data));
+
+
+

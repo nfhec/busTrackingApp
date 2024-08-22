@@ -5,5 +5,6 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="http_ajax.googleapis.com_ajax_libs_jquery_3.7.1_jquery" level="project" />
+    <orderEntry type="library" name="jquery-3.7.1" level="application" />
   </component>
 </module>

@@ -3,6 +3,8 @@ $conn = mysqli_connect('localhost', 'root', 'root', 'gtfs');
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
 }
+date_default_timezone_set('America/Fort_Collins');
+$dayName = strtolower(date('l'));
 
 $routeShortName = $_POST['route'];
 
@@ -25,11 +27,12 @@ FROM trips
 WHERE trips.service_id IN(
     SELECT calendar.service_id
     FROM calendar
-    WHERE CURRENT_DATE BETWEEN calendar.start_date and calendar.end_date AND calendar.tuesday LIKE 1
+    WHERE CURRENT_DATE BETWEEN calendar.start_date and calendar.end_date AND calendar.$dayName LIKE 1
 ) 
 AND trips.route_id LIKE ?";
 
 $stmt = $conn->prepare($query);
+$currentDay = "calendar.$day";
 $stmt->bind_param('i', $routeId)   ;
 $stmt->execute();
 $result = $stmt->get_result();

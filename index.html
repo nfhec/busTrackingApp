@@ -10,13 +10,22 @@
       <label for="routeDatalist">Select a route:</label>
       <input id = routeInput class = routeInput list = routeDatalist onchange = 'routeSelected()'>
       <datalist class = routeDatalist id = routeDatalist>
-
       </datalist>
+
+      <div id = stopList class = stopList hidden="hidden">
+        <label for="stopDataList">Select a stop:</label>
+        <input id = stopInput class = "stopInput" list = stopDataList onchange = 'stopSelected()'>
+        <datalist class = stopDataList id = "stopDataList">
+        </datalist>
+      </div>
     </div>
   </div>
 
 </body>
 <style>
+  .stopList {
+    padding-top: 50px;
+  }
     .routeInput {
 
     }

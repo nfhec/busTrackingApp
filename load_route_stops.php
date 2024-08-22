@@ -8,7 +8,7 @@ $query = "SELECT stop_times.stop_id, trips.trip_id, stops.stop_name
         FROM trips
         JOIN stop_times ON trips.trip_id = stop_times.trip_id  -- Another join condition for trips
         JOIN stops ON stop_times.stop_id = stops.stop_id
-        WHERE trips.trip_id LIKE ?  -- Filter for specific trip
+        WHERE trips.trip_id LIKE ? AND trips.direction_id LIKE 1  -- Filter for specific trip
         ORDER BY stop_times.arrival_time";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $trip_id);
